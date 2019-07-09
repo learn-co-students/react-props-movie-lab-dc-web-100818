@@ -19,6 +19,7 @@ describe('<CardBack />', () => {
   
   const cardBack = shallow(<CardBack title="Rolling in the Deep" genres={genres} IMDBRating={3} />)
   const text = cardBack.text()
+  //this test is wrong -- the value of text here is 'Rolling in the DeepNever gonna give you up , Never gonna let you down, Never gonna run around and desert you'
   
   it("correctly renders the title prop", () => {
     expect(text).to.contain('Rolling in the Deep')
