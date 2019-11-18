@@ -28,13 +28,27 @@ const posterMap = {
 }
 
 export default class MovieCard extends Component {
+  constructor() {
+    super()
+    this.state = {
+      flipped: false
+    }
+  }
+
+  flipCard = () => {
+    this.setState({
+      flipped: !this.state.flipped
+    })
+  }
 
   render(props) {
     return (
-      <div className="movie-card">
-        {/* which component should receive which props? */}
-        <CardFront poster={posterMap[this.props.poster]} />
-        <CardBack title={this.props.title} IMDBRating={this.props.IMDBRating} genres={this.props.genres} />
+      <div className="movie-card" onClick={this.flipCard}>
+        { this.state.flipped ? (
+          <CardBack title={this.props.title} IMDBRating={this.props.IMDBRating} genres={this.props.genres} flipped={this.state.flipped}/>
+        ) : (
+          <CardFront poster={posterMap[this.props.poster]} flipped={this.state.flipped}/>
+        ) }
       </div>
     )
   }
